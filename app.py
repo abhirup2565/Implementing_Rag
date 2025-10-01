@@ -1,10 +1,10 @@
 from langchain_community.document_loaders import HuggingFaceDatasetLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from transformers import AutoTokenizer, AutoModelForQuestionAnswering
 from transformers import AutoTokenizer, pipeline
-from langchain import HuggingFacePipeline
+from langchain_community.llms.huggingface_pipeline import HuggingFacePipeline 
 from langchain.chains import RetrievalQA
 
 #-----------Document Loading-----------------
@@ -19,7 +19,7 @@ loader = HuggingFaceDatasetLoader(dataset_name, page_content_column)
 data = loader.load()
 
 # Display the first 15 entries 
-data[:2] #2 represent the coloum from dataset
+data[:2] 
 
 #------------Document Transformer-----------------
 # Create an instance of the RecursiveCharacterTextSplitter class with specific parameters.
@@ -94,5 +94,5 @@ qa = RetrievalQA.from_chain_type(llm=llm, chain_type="refine", retriever=retriev
 
 #------------Test the pipeline -----------------
 question = "Who is Thomas Jefferson?"
-result = qa.run({"query": question})
-print(result["result"])
+result = qa.invoke({"query": question})
+print(result)
