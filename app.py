@@ -5,7 +5,8 @@ from langchain_community.vectorstores import FAISS
 from transformers import AutoTokenizer, AutoModelForQuestionAnswering
 from transformers import AutoTokenizer, pipeline
 from langchain_community.llms.huggingface_pipeline import HuggingFacePipeline 
-from langchain.chains import RetrievalQA
+#from langchain.chains import RetrievalQA
+from langchain.chains import create_retrieval_chain
 
 #-----------Document Loading-----------------
 # Specify the dataset name and the column containing the content
